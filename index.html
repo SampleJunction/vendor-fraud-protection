@@ -149,27 +149,27 @@
 						
                         <p>When configuring your endpages, you will want to specify to Sample Junction which query parameter will store the calculated hash value (Default is "checksum" parameter).</p>
 						
-						<p>For example, using this sample survey complete endpage: https://my-survey-site.com/?status={complete}&id={ID}&checksum={generated hash}<p>
+						<p>For example, using this sample survey complete endpage: https://my-survey-site.com/?status={complete}&uid={Session ID}&checksum={generated hash}<p>
                             
 						<p><b>Hash Example</b></p>
 						<p>Let's say encryption/secret key for hashing is : 1234abc13as43</p>
 						
 						<p>Normal Endpage of Partner provided to Sample Junction is</p>
-						<pre>https://my-survey-site.com/?status=1&id=13323434334</pre>
+						<pre>https://my-survey-site.com/?status=1&uid=13323434334</pre>
 						
 						<p>For Encryption we will use query string from URL</p>
-						<pre>status=1&id=13323434334</pre>
+						<pre>status=1&uid=13323434334</pre>
 						
 						<p>We will then generate HMAC for this string using above secret key and SHA1 algo - here is the generated checksum</p>
-						<pre>7e633f2e30e948eb23cd7f2b21b15fd176832dc8</pre>
+						<pre>3d5aad70abeee3235d0c6ff5f827de3d66c4ff33</pre>
 						
 						<p>Final URL that goes to our partner is </p>
-						<pre>https://my-survey-site.com/?status=1&id=13323434334&checksum=7e633f2e30e948eb23cd7f2b21b15fd176832dc8</pre>
+						<pre>https://my-survey-site.com/?status=1&uid=13323434334&checksum=3d5aad70abeee3235d0c6ff5f827de3d66c4ff33</pre>
 						
 						<p>Here we are using SHA-1 HASH HMAC Algorithm to generate Hash.</p>
 						<p>This example can be verified using <a href="https://www.freeformatter.com/hmac-generator.htm">an online HMAC calculator.</a>
 						
-						<img src="https://cl.ly/sRS5/Image%202018-06-21%20at%209.42.13%20PM.png" width="600px"></img>
+						<img src="https://cl.ly/sReM/Image%202018-06-21%20at%2010.04.53%20PM.png" width="600px"></img>
 						
 						<p>Language specific example</p>
 						<dl class="tabs code" data-tab>
@@ -184,7 +184,7 @@
 <pre data-lang="php">
 /* PHP Example of generating Hash at our end */
 $secret_key = '1234abc13as43';
-$partner_url = 'https://my-survey-site.com/?status=1&id=13323434334';
+$partner_url = 'https://my-survey-site.com/?status=1&uid=13323434334';
 $query_string = explode('?', $partner_url)[1];
 $newHash = hash_hmac('sha1', $query_string, $secret_key);
 $newUrl = $partner_url.'&checksum='.$newHash;
@@ -198,7 +198,7 @@ echo $newUrl;
 $secret_key = '1234abc13as43';
 
 /* Fetch your current page URL */
-$current_page_url = 'https://my-survey-site.com/?status=1&id=13323434334&checksum=7e633f2e30e948eb23cd7f2b21b15fd176832dc8';
+$current_page_url = 'https://my-survey-site.com/?status=1&uid=13323434334&checksum=3d5aad70abeee3235d0c6ff5f827de3d66c4ff33';
 
 /* Split Query String from URL */
 $query_string = explode('?', $current_page_url)[1];
