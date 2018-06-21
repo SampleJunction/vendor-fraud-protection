@@ -158,18 +158,18 @@
 						<pre>https://my-survey-site.com/?status=1&id=13323434334</pre>
 						
 						<p>For Encryption we will use query string from URL</p>
-						<pre>?status=1&id=13323434334</pre>
+						<pre>status=1&id=13323434334</pre>
 						
 						<p>We will then generate HMAC for this string using above secret key and SHA1 algo - here is the generated checksum</p>
-						<pre>ab520e4f2917bf040e2a12ba416e861b5cf7794c</pre>
+						<pre>7e633f2e30e948eb23cd7f2b21b15fd176832dc8</pre>
 						
 						<p>Final URL that goes to our partner is </p>
-						<pre>https://my-survey-site.com/?status=1&id=13323434334&checksum=ab520e4f2917bf040e2a12ba416e861b5cf7794c</pre>
+						<pre>https://my-survey-site.com/?status=1&id=13323434334&checksum=7e633f2e30e948eb23cd7f2b21b15fd176832dc8</pre>
 						
 						<p>Here we are using SHA-1 HASH HMAC Algorithm to generate Hash.</p>
 						<p>This example can be verified using <a href="https://www.freeformatter.com/hmac-generator.htm">an online HMAC calculator.</a>
 						
-						<img src="https://cl.ly/sQlK/Image%202018-06-21%20at%209.02.49%20PM.png" width="600px"></img>
+						<img src="https://cl.ly/sRS5/Image%202018-06-21%20at%209.42.13%20PM.png" width="600px"></img>
 						
 						<p>Language specific example</p>
 						<dl class="tabs code" data-tab>
