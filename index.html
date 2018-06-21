@@ -189,9 +189,11 @@ $newHash = hash_hmac('sha1', $query_string, $secret_key);
 $newUrl = $partner_url.'&checksum='.$newHash;
 echo $newUrl;
 
-/* ###################################### */
+</pre>
 
-/* PHP Example of computing Hash at partners end */
+<p> PHP Example of computing Hash at partners end </p>
+
+<pre data-lang="php">
 $secret_key = '1234abc13as43';
 
 /* Fetch your current page URL */
