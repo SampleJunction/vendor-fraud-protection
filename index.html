@@ -49,8 +49,6 @@
                 <li class="sidebar__item"><a href="#getting-started">Getting Started </a>
                     <ul class="sidebar__nav">
                         <li class="sidebar__item"><a href="#hash-tracking">Hash HMAC Encryption</a></li>
-                        <li class="sidebar__item"><a href="#s2s-tracking">S2S (Server to Server Tracking)</a></li>
-						<li class="sidebar__item"><a href="#pixel-tracking">Pixel Tracking</a></li>
                     </ul>
                 </li>
         
@@ -67,7 +65,7 @@
                 
                         <h1 class="header__title">
                             <a href="https://samplejunction.com/">Sample Junction</a>
-                            <small>Sample Junction Fraud Prevention and Client Redirection Doc</small>
+                            <small>Sample Junction Partner Links Protection Doc</small>
                         </h1>
                 
                     </header>
@@ -92,7 +90,7 @@
                         </a>
                     </h2>
                 
-                    <p>To combat respondents who attempt to mark their participation as completes with us fraudulently, we have this document which outlines few simple methods of validating traffic for us to ensure that the links being sent back, have not been tampered and correct status can be marked at our end.</p>
+                    <p>To combat respondents who attempt to mark their participation as completes with our partners, we have this document which outlines few simple methods of validating traffic for our partners to ensure that the links being sent back, have not been tampered and correct status can be marked at our partner's end.</p>
                 
                 </section>
 				
@@ -104,33 +102,13 @@
                         </a>
                     </h2>
                 
-                    <p>Out of various respondent validation techniques, we currently support three major techniques</p>
+                    <p>We support following fraud protection techniques</p>
 					
 					<ul>
 						<li>
 							<a href="#hash-tracking"> Hash HMAC Encryption</a>
 						</li>
-						<li>
-							<a href="#s2s-tracking">S2S (Server to Server Tracking)</a>
-						</li>
-						<li>
-							<a href="#pixel-tracking">Pixel Tracking</a>
-						</li>
 					</ul>
-                
-                    <!--<pre data-lang="html">
-                        &lt;!-- include the jQuery and jQuery UI scripts --&gt;
-                        &lt;script src="https://code.jquery.com/jquery-2.1.1.js"&gt;&lt;/script&gt;
-                        &lt;script src="https://code.jquery.com/ui/1.11.1/jquery-ui.js"&gt;&lt;/script&gt;
-                
-                        &lt;!-- plus a jQuery UI theme, here I use "flick" --&gt;
-                        &lt;link rel="stylesheet" href="https://code.jquery.com/ui/1.10.4/themes/flick/jquery-ui.css"&gt;
-                    </pre>
-                
-                    <p><span class="round label tip"></span>If no other parts of <strong>jQuery UI</strong> are needed; then it is strongly recommended 
-                        <a href="http://jqueryui.com/download/#!version=1.11.1&amp;components=1110000000000000010000000000000000000&amp;zThemeParams=5d00000100ea05000000000000003d8888d844329a8dfe02723de3e5701258a13d5ba490adca99e4a02bf259c3083bccd292fbc7a815b30f470ff7ff66fa62b6dd388eb0ff95f693739fdbaa8434129ba964c9c618330e8d3698d18f5069869197a7edb7ba209c2ccade9dea94baa4a782a787eace2a1b08565447bae4412db4abad045349d9cb0fc7060aedefefdaac07401dda39c726dc250e5f78622446cf4a39bbeea63dd307c06c2362e8e26d7bb280690729a1abebd5f1738f5aac6321c77a387f1304195de162fb7581e71ef6c674d6acb08b15a16869876ad2d5896f919473079348d741e4a00bf904bf5f866cd04abc216db3dc5b4a189effddc2c54c7cc163c95759731e8bd7034b2c13913207f31fa0cafaef7f5b646c233a4ef7d962df2eb186164536a2904819f0908c694d0ffab5bcdbd9eced8cb0e7f4b5c20932dd38cad03620e65c24079c291dd3456ff0d5db07ab9a2cec4c84a44acc6fd22753c503e28ec1fa083aea2d17f17ab2a83605505738f671c83f0f8c5b20b273e0d15def5a631d504d63cfe7aa2ab9c5809c740725e4a63f63aa447bd7a1f50c17c65adcbf80bac308cf01348b1d08a8610c9375d7579e5297ccba18ed2be1ea3d39fe5de771" title="premade custom build link">
-                        to download a custom build with only the slider included.</a></p>-->
-                
                 </section>
 				<section class="block" id="hash-tracking">
                 
@@ -140,23 +118,23 @@
                         </a>
                     </h2>
                     
-                    <p>Partners can pass in an additional parameter to our endpage URL that will provide a checksum of the URL. Any attempt for the fraudulent user to manipulate the link will cause a checksum mismatch.
+                    <p>Sample Junction can pass out an additional parameter to a partner endpage URL that will provide a checksum of the query string in URL. Any attempt for the fraudulent user to manipulate the link will cause a checksum mismatch.
 
-					Partners can use any common hashing algorithm like 
+					Sample Junction can use any of the following hashing algorithm like 
 					<ul>
-						<li>SHA-1</li>
+						<li>SHA-1 (Default)</li>
 						<li>MD5</li>
 						<li>MD4</li>
 						<li>sha256</li>
 						<li>sha512</li>
 					</ul> 
-					You just need to specify us which hashing algorithm you are going to use.
+					Partners may specify us which hashing algorithm they want to use.
 					</p>
 					
 					<p><b>Pros and Cons</b></p>
-					<p>Pros: Hard to reverse, unique to every input, provides security. By adding a random salt value, you create a very different hashing algorithm. You also increase the search space size for brute force attacks, which run through all possible options. </p>
+					<p>Pros: Hard to reverse, unique to every input, provides security. By adding a random salt value, you create a very different hashing algorithm. It also increases the search space size for brute force attacks, which run through all possible options. </p>
 					
-					<p>Cons: You have to make little change in you existing code so that whenever you are redirecting back to us, you can compute and add hash in redirect URL.
+					<p>Cons: Partners have to make little changes in their existing code so that whenever Sample Junction is redirecting back to partner, partner can calculate and match hash from redirect URL.
 					</p>
                 
                     <section class="sub-block" id="hash-implementation">
@@ -167,31 +145,35 @@
                             </a>
                         </h3>
                     
-                        <p>In order to generate HMAC checksum, you will need to have a specific secret key, which is common for both parties, and will be shared after reaching out to Sample Junction.</p>
+                        <p>In order to correctly calculate HMAC checksum, first reach out to Sample Junction for your partner-specific secret key.</p>
+						
+                        <p>When configuring your endpages, you will want to specify to Sample Junction which query parameter will store the calculated hash value (Default is "checksum" parameter).</p>
+						
+						<p>For example, using this sample survey complete endpage: https://my-survey-site.com/?status={complete}&id={ID}&checksum={generated hash}<p>
                             
 						<p><b>Hash Example</b></p>
 						<p>Let's say encryption/secret key for hashing is : 1234abc13as43</p>
 						
-						<p>Normal Endpage Redirect that is given to our partners is</p>
-						<pre>http://samppoint.com/end/?status=1&sjid=12345</pre>
+						<p>Normal Endpage of Partner provided to Sample Junction is</p>
+						<pre>https://my-survey-site.com/?status=1&id=13323434334</pre>
 						
-						<p>For Encryption Base URL will be</p>
-						<pre>http://samppoint.com/end/?status=1&sjid=12345&hash=</pre>
+						<p>For Encryption we will use query string from URL</p>
+						<pre>?status=1&id=13323434334</pre>
 						
-						<p>Final URL that comes to us will be </p>
-						<pre>http://samppoint.com/end/?status=1&sjid=12345&hash=c480ed2f40edbffb3a397a5230f7da6af92260bf</pre>
+						<p>We will then generate HMAC for this string using above secret key and SHA1 algo - here is the generated checksum</p>
+						<pre>ab520e4f2917bf040e2a12ba416e861b5cf7794c</pre>
+						
+						<p>Final URL that goes to our partner is </p>
+						<pre>https://my-survey-site.com/?status=1&id=13323434334&checksum=ab520e4f2917bf040e2a12ba416e861b5cf7794c</pre>
 						
 						<p>Here we are using SHA-1 HASH HMAC Algorithm to generate Hash.</p>
 						<p>This example can be verified using <a href="https://www.freeformatter.com/hmac-generator.htm">an online HMAC calculator.</a>
 						
-						<img src="https://files.readme.io/d6ef109-hmac.png" width="300px"></img>
+						<img src="https://cl.ly/sQlK/Image%202018-06-21%20at%209.02.49%20PM.png" width="600px"></img>
 						
 						<p>Language specific example</p>
 						<dl class="tabs code" data-tab>
                             <dd class="active"><a href="#default-php-example" title="result">PHP</a></dd>
-                            <dd><a href="#default-JAVA-example" title="html">JAVA</a></dd>
-                            <dd><a href="#default-asp-example" title="jquery">ASP</a></dd>
-                            <dd><a href="#default-c-example" title="jquery">C#</a></dd>
                         </dl>
                     
                         <div class="tabs-content">
@@ -201,150 +183,19 @@
 <pre data-lang="php">
 /* PHP Example  */
 $secret_key = '1234abc13as43';
-$base_url = 'http://samppoint.com/end/?status=1&sjid=12345&hash=';
-$newHash = hash_hmac('sha1', $base_url, $secret_key);
-$newUrl = $base_url.$newHash;
+$partner_url = 'http://samppoint.com/end/?status=1&id=13323434334';
+$query_string = explode('?', $partner_url)[1];
+$newHash = hash_hmac('sha1', $query_string, $secret_key);
+$newUrl = $partner_url.'&checksum='.$newHash;
 echo $newUrl;
 </pre>
                     
                             </div>
                     
-                            <div class="content" id="default-JAVA-example">
-                    
-<pre data-lang="java">
-/* Java Example  */
-private static String computeSignature(String baseString, String keyString) throws GeneralSecurityException, UnsupportedEncodingException {
 
-    SecretKey secretKey = null;
 
-    byte[] keyBytes = keyString.getBytes();
-    secretKey = new SecretKeySpec(keyBytes, "HmacSHA1");
-
-    Mac mac = Mac.getInstance("HmacSHA1");
-
-    mac.init(secretKey);
-
-    byte[] text = baseString.getBytes();
-
-    return new String(Base64.encodeBase64(mac.doFinal(text))).trim();
-}
-</pre>
-                    
-                            </div>
-                    
-                            <div class="content" id="default-asp-example">
-<pre data-lang="asp">
-	/* ASP Example  */
-	static string ShaHash(string value, string key)
-	{
-		using (var hmac = new HMACSHA1(Encoding.ASCII.GetBytes(key)))
-		{
-			return ByteToString(hmac.ComputeHash(Encoding.ASCII.GetBytes(value)));
-		}
-	}
-	static string ByteToString(IEnumerable<byte> data)
-	{
-		return string.Concat(data.Select(b => b.ToString("x2")));
-	}
-</pre>
-                            </div>
-							
-							<div class="content" id="default-c-example">
-<pre data-lang="c#">
-/* C# Example  */
-secret = secret ?? "";
-var encoding = new System.Text.ASCIIEncoding();
-byte [] keyByte = encoding.GetBytes(secret);
-byte [] urlBytes = encoding.GetBytes(url);
-using (var hmacsha256 = new HMACSHA1(keyByte))
-{
-	byte [] hashmessage = hmacsha256.ComputeHash(urlBytes);
-	var csToken = Convert.ToBase64String(hashmessage);
-	return csToken.Replace("+", "-").Replace("/", "_").Replace("=", string.Empty);
-}
-</pre>
-                            </div>
                     
                         </div>
-                    
-                    </section>
-                
-                </section>
-				
-				<section class="block" id="s2s-tracking">
-                
-                    <h2>
-                        <a href="#s2s-tracking" class="anchor">
-                            S2S (Server to Server Tracking)
-                        </a>
-                    </h2>
-                    
-                    <p>(a.k.a. cookie-less tracking or S2S conversion tracking or post back URL conversion) It's a way to track conversions without the necessity to modify end page URLs. Whenever a respondents completes, terminates, quota-full .. before redirecting him back to us, you send us a hit from your server with the session ID for that respondents like SJID=12343 and status of that survey. Whenever we get a hit from your server, we first verify that request came from your server by verifying IP address of the server. once verified we store that information, rest of the process stay as it is, when respondent is redirected back to us</p>
-					
-					<p><b>Pros and Cons</b></p>
-					<p>Pros: S2S conversion tracking  does not use cookies but stores information server-side (in the client server). After the conversion happens the client server sends info to SampleJunction. With conversion to conversion tracking cookies may be cancelled by the respondents, denied from their browser or expire after a certain period and conversions can still be recorded. Furthermore you do not need to place a piece of code (the conversion code or pixel) in the client website making server to server conversion tracking the most precise.</p> 
-					
-					<p>Cons: You need an organized way to manage postback URLs in your server.
-					</p>
-                
-                    <section class="sub-block" id="s2s-implementation">
-                        
-                        <h3>
-                            <a href="#s2s-implementation" class="anchor">
-                                S2S implementation
-                            </a>
-                        </h3>
-                    
-                        <p>In order to implement S2S postback, you have to send one way hit to our specified URL with session ID and status of that respondent.</p>
-                            
-						<p><b>S2S Example</b></p>
-						<p>First you have to tell us your Server IP address through which you will send us hit so that we can add it to whitelisted IP address.</p>
-						
-						<p>Let's say respondent completed your survey, Before redirecting back the respondent to us, you make an asynchronous hit to our specified URL from your server like : http://samppoint.com/s2s/validation/?status=1&sjid=12345</p>
-						
-						<p>Once we get the hit, We will verify IP address of the hit to validate source. After that you can send respondent back to us so that we can be sure that this respondent is validated.</p>
-                    
-                    </section>
-                
-                </section>
-				
-				<section class="block" id="pixel-tracking">
-                
-                    <h2>
-                        <a href="#pixel-tracking" class="anchor">
-                            Pixel Tracking (Cookie based tracking)
-                        </a>
-                    </h2>
-                    
-                    <p>Also called Client-side Tracking, Cookie-Based Tracking or In-browser Tracking. This method relies on user’s browser to track conversions. Pixel-based tracking uses cookies to track status because they can store the session values in the cookie. With the way pixels are designed to track, we can extract this information from the browser easily. As a result, setting up an offer to track using pixels is very simple and only involves placing the HTML offer pixel on the conversion page through which we can determine the validity of the respondents.</p>
-					
-					<p><b>Pros and Cons</b></p>
-					<p>Pros: Use pixel tracking when you don’t have the technical resources necessary to implement any other tracking method specified above.</p>
-					
-					<p>Cons: This tracking relies on User cookies and browser. So it is not full proof as a user can delete cookies or their browser can restrict cookies access..
-					</p>
-                
-                    <section class="sub-block" id="pixel-implementation">
-                        
-                        <h3>
-                            <a href="#pixel-implementation" class="anchor">
-                                Pixel implementation
-                            </a>
-                        </h3>
-                    
-                        <p>In order to implement Pixel tracking, you have to add a piece of our code in your end page, this code contains an Iframe to our site.</p>
-                            
-						<p><b>Pixel method example</b></p>
-						<p>Whenever respondents go through our site, we place a cookie containing session id of respondent in their browser.</p>
-						
-						<p>When that respondent reaches your end page, our pixel is fired through Iframe code, we then detect if respondent browser contains the same cookie. If cookie is found then we mark this as genuine else we add that respondent to our fraud list.</p>
-						
-						<p>Following is an example of pixel code which you have to be implemented at your end.</p>
-<pre>
-&lt;!-- This is a sample code, we will provide you exact code personally --&gt;
-&lt;noscript&gt;&lt;iframe src="https://samppoint.com/pixel/?linkid={SJID}" scrolling="no" frameborder="0" width="1" height="1" style="display:none;"&gt;&lt;/iframe&gt;&lt;/noscript&gt;
-&lt;script&gt;!function(s,e){var e=document.createElement("iframe");e.setAttribute("src","https://samppoint.com/pixel/?linkid="+s),e.setAttribute("scrolling","no"),e.setAttribute("width","1"),e.setAttribute("height","1"),e.style.display="none",e.style.visibility="hidden",e.style.width="1",e.style.height="1",document.body.appendChild(e)}(‘SJID’,00);&lt;/script&gt;
-</pre>
                     
                     </section>
                 
