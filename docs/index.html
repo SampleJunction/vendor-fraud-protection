@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+        <title>Sample Junction Encryption Docs</title>
+
+        <meta name="description" content="This is Sample Junction Encryption Docs">
+        <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+
+        <!-- modernizer -->
+        <script src="../dist/js/modernizr.min.js"></script>
+        
+        <!-- fonts -->
+        <link rel="stylesheet" type="text/css" 
+            href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,600,700,800|Handlee">
+
+        <!-- jquery ui -->
+        <link rel="stylesheet" href="../dist/css/jqueryui.min.css" />
+
+        <!-- slider -->
+        <link rel="stylesheet" href="../dist/css/jquery-ui-slider-pips.min.css" />
+        
+        <!-- app -->
+        <link rel="stylesheet" href="../dist/css/app.min.css" />
+
+    </head>
+
+    <body>
+
+        
+        <a href="#" class="sidebar__toggle">
+            <i class="icon icon--menu"></i>
+            <i class="icon icon--cross"></i>
+        </a>
+        
+        <nav class="sidebar">
+            
+            <h2 class="sidebar__title">Navigation</h2>
+        
+            <ul class="sidebar__nav">
+            
+                <li class="sidebar__item"><a href="#introduction">Introduction</a></li>
+                <li class="sidebar__item"><a href="#getting-started">Getting Started </a>
+                    <ul class="sidebar__nav">
+                        <li class="sidebar__item"><a href="#hash-tracking">Hash HMAC Encryption</a></li>
+                    </ul>
+                </li>
+        
+            </ul>
+        
+        </nav>
+        <section class="content">
+            
+            <section class="content__main">
+        
+                <section class="block">
+                
+                    <header class="header">
+                
+                        <h1 class="header__title">
+                            <a href="https://samplejunction.com/">Sample Junction</a>
+                            <small>Sample Junction® - Partner Links Protection Doc</small>
+                        </h1>
+                
+                    </header>
+                
+                    <!--<ul class="share-links">
+                        
+                        <li class="share-links__item">
+                            <a class="share-links__link" data-share="Tweet" href="http://twitter.com/samplejunction" title="Tweet about my slider, I will retweet and love you.">
+                                <i class="icon icon--twitter"></i> 
+                                @samplejunction
+                            </a>
+                        </li>                
+                    </ul>-->
+                
+                </section>
+				
+				<section class="block" id="introduction">
+                
+                    <h2>
+                        <a href="#introduction" class="anchor">
+                            Introduction
+                        </a>
+                    </h2>
+                
+                    <p>To combat respondents who attempt to mark their participation as completes with our partners, we have this document which outlines few simple methods of validating traffic for our partners to ensure that the links being sent back, have not been tampered and correct status can be marked at our partner's end.</p>
+                
+                </section>
+				
+                <section class="block" id="getting-started">
+                
+                    <h2>
+                        <a href="#getting-started" class="anchor">
+                            Getting Started
+                        </a>
+                    </h2>
+                
+                    <p>We support following fraud protection techniques</p>
+					
+					<ul>
+						<li>
+							<a href="#hash-tracking"> Hash HMAC Encryption</a>
+						</li>
+					</ul>
+                </section>
+				<section class="block" id="hash-tracking">
+                
+                    <h2>
+                        <a href="#hash-tracking" class="anchor">
+                            Hash HMAC
+                        </a>
+                    </h2>
+                    
+                    <p>Sample Junction can pass out an additional parameter to a partner endpage URL that will provide a checksum of the query string in URL. Any attempt for the fraudulent user to manipulate the link will cause a checksum mismatch.
+
+					Sample Junction can use any of the following hashing algorithm like 
+					<ul>
+						<li>SHA-1 (Default)</li>
+						<li>MD5</li>
+						<li>MD4</li>
+						<li>sha256</li>
+						<li>sha512</li>
+					</ul> 
+					Partners may specify us which hashing algorithm they want to use.
+					</p>
+					
+					<p><b>Pros and Cons</b></p>
+					<p>Pros: Hard to reverse, unique to every input, provides security. By adding a random salt value, you create a very different hashing algorithm. It also increases the search space size for brute force attacks, which run through all possible options. </p>
+					
+					<p>Cons: Partners have to make little changes in their existing code so that whenever Sample Junction is redirecting back to partner, partner can calculate and match hash from redirect URL.
+					</p>
+                
+                    <section class="sub-block" id="hash-implementation">
+                        
+                        <h3>
+                            <a href="#hash-implementation" class="anchor">
+                                Hash HMAC implementation
+                            </a>
+                        </h3>
+                    
+                        <p>In order to correctly calculate HMAC checksum, first reach out to Sample Junction for your partner-specific secret key.</p>
+						
+                        <p>When configuring your endpages, you will want to specify to Sample Junction which query parameter will store the calculated hash value (Default is "checksum" parameter).</p>
+						
+						<p>For example, using this sample survey complete endpage: https://my-survey-site.com/?status={complete}&uid={Session ID}&checksum={generated hash}<p>
+                            
+						<p><b>Hash Example</b></p>
+						<p>Let's say encryption/secret key for hashing is : 1234abc13as43</p>
+						
+						<p>Normal Endpage of Partner provided to Sample Junction is</p>
+						<pre>https://my-survey-site.com/?status=1&uid=13323434334</pre>
+						
+						<p>For Encryption we will use query string from URL</p>
+						<pre>status=1&uid=13323434334</pre>
+						
+						<p>We will then generate HMAC for this string using above secret key and SHA1 algo - here is the generated checksum</p>
+						<pre>3d5aad70abeee3235d0c6ff5f827de3d66c4ff33</pre>
+						
+						<p>Final URL that goes to our partner is </p>
+						<pre>https://my-survey-site.com/?status=1&uid=13323434334&checksum=3d5aad70abeee3235d0c6ff5f827de3d66c4ff33</pre>
+						
+						<p>Here we are using SHA-1 HASH HMAC Algorithm to generate Hash.</p>
+						<p>This example can be verified using <a href="https://www.freeformatter.com/hmac-generator.html">an online HMAC calculator.</a>
+						
+						<img src="https://cl.ly/sReM/Image%202018-06-21%20at%2010.04.53%20PM.png" width="600px"></img>
+						
+						<p>Language specific example</p>
+						<dl class="tabs code" data-tab>
+                            <dd class="active"><a href="#default-php-example" title="result">PHP</a></dd>
+                            <dd class=""><a href="#default-asp-example" title="result">ASP</a></dd>
+                        </dl>
+                    
+                        <div class="tabs-content">
+                    
+                            <div class="content active" id="default-php-example">
+      
+<p> PHP Example of generating hash at our end </p>	  
+<pre data-lang="php">
+/* PHP Example of generating Hash at our end */
+$secret_key = '1234abc13as43';
+$partner_url = 'https://my-survey-site.com/?status=1&uid=13323434334';
+$query_string = explode('?', $partner_url)[1];
+$newHash = hash_hmac('sha1', $query_string, $secret_key);
+$newUrl = $partner_url.'&checksum='.$newHash;
+echo $newUrl;
+
+</pre>
+
+<p> PHP Example of computing Hash at partners end </p>
+
+<pre data-lang="php">
+$secret_key = '1234abc13as43';
+
+/* Fetch your current page URL */
+$current_page_url = 'https://my-survey-site.com/?status=1&uid=13323434334&checksum=3d5aad70abeee3235d0c6ff5f827de3d66c4ff33';
+
+/* Split Query String from URL */
+$query_string = explode('?', $current_page_url)[1];
+parse_str($query_string, $get_array);
+
+$checksum = $get_array['checksum'];
+$raw_url = explode( '&checksum='.$checksum, $query_string )[0];
+$newChecksum = hash_hmac( 'sha1', $raw_url, $secret_key );
+
+/* Match Checksum provided in URL with checksum generated by you */
+if($newChecksum !== $checksum){
+	// Your Fraud Prevention logic
+}
+</pre>
+                    
+                            </div>
+                    
+
+						<div class="content" id="default-asp-example"> 
+							<pre data-lang="asp">/* We don't have any ASP example for now */</pre>
+						</div>
+                    
+                        </div>
+                    
+                    </section>
+                
+                </section>
+        </section>
+	</section>
+        
+        <!-- jquery, jqueryui -->
+            <script src="../dist/js/jquery-plus-ui.min.js"></script>
+        
+        <!-- foundation, prettify, jqueryui, twemoji -->
+            <script src="../dist/js/bower-libs.min.js"></script>
+
+        <!-- slider -->
+            <script src="../dist/js/jquery-ui-slider-pips.js"></script>
+
+        <!-- twemojiWrapper, prettyPre -->
+            <script src="../dist/js/helpers.js"></script>
+
+        <!-- app -->
+        <script src="../dist/js/examples.js"></script>
+        <script src="../dist/js/styling.js"></script>
+        <script src="../dist/js/app.js"></script>
+  
+    </body>
+
+</html>
